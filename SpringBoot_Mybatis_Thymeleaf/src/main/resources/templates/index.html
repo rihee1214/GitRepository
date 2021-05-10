@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" th:href="@{/css/test.css}" href="./css/test.css">
+</head>
+<body>
+	<h1>ThymeLeaf Index Page</h1>
+	<h1 th:text="${message}" th:class="c1">Default Message</h1>
+	<img alt="c와 java" th:src="@{./images/c++과java.jpg}">
+	<img alt="c와 java" th:src="@{./images/eating a meal.jpg}">
+</body>
+</html>
