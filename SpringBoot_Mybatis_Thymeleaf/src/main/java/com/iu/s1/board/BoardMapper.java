@@ -9,7 +9,7 @@ public interface BoardMapper {
 	//Count
 	public Long getTotalCount()throws Exception;
 	//Select
-	public BoardVO getSelect()throws Exception;
+	public BoardVO getSelect(BoardVO boardVO)throws Exception;
 	//Insert
 	public Long setBoard(BoardVO boardVO)throws Exception;
 	//Update

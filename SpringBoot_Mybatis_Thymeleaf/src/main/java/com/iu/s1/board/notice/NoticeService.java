@@ -3,10 +3,12 @@ package com.iu.s1.board.notice;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.iu.s1.board.BoardService;
 import com.iu.s1.board.BoardVO;
 
+@Service
 public class NoticeService implements BoardService{
 
 	@Autowired
@@ -14,8 +16,7 @@ public class NoticeService implements BoardService{
 	
 	@Override
 	public List<BoardVO> getList() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return noticeMapper.getList();
 	}
 
 	@Override
@@ -24,11 +25,6 @@ public class NoticeService implements BoardService{
 		return null;
 	}
 
-	@Override
-	public BoardVO getSelect() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public Long setBoard(BoardVO boardVO) throws Exception {
@@ -52,6 +48,11 @@ public class NoticeService implements BoardService{
 	public Integer setDelete(BoardVO boardVO) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public BoardVO getSelect(BoardVO boardVO) throws Exception {
+		return noticeMapper.getSelect(boardVO);
 	}
 
 	
