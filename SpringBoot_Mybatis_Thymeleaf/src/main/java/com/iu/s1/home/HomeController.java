@@ -19,8 +19,7 @@ public class HomeController {
 	@GetMapping("/")
 	public String home(Model model) throws Exception{
 		model.addAttribute("message", "ThymeLeaf Project");
-		BoardVO boardVO = new BoardVO();
-		
+		BoardVO boardVO = new BoardVO();	
 		return "index";
 	}
 }
