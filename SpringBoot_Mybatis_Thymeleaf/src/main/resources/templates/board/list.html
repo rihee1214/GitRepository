@@ -13,6 +13,19 @@
 	<div>
 		<h1 th:text="${board}"></h1>
 	</div>
+	<div class="d-flex justify-content-center">
+		<form method="get" th:action="@{./list}" id="frm">
+			<input type="hidden" name="curPage" id="curPage">
+			<select class="custom-select" name="kind" th:value="${pager.kind}">
+				<option value="title">제목</option>
+				<option value="contents">내용</option>
+				<option value="writer">작성자</option>
+			</select>
+			<input type="text" class="form-control" placeholder="Search" name="search" th:value="${pager.search}">
+			<button class="btn btn-success">Search</button>
+		</form>
+	</div>
+	
 	<table class="table">
 	  <thead class="thead-dark">
 	    <tr>
@@ -53,16 +66,21 @@
 	</table>
 	
 	<a href="#" class="btn btn-primary" th:href="@{./insert}">Write</a>
+	<!-- th:if로 사용할 수 있고, th:unless로 if문의 반대식으로 사용할 수 있다. 사용방법은 둘다 같다. -->
 	<div class="container d-flex justify-content-center">
 		<ul class="pagination">
-		  <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-		  <li class="page-item" th:each="i : ${#numbers.sequence(pager.startNum, pager.lastNum)}"><a class="page-link" href="#" th:text="${i}"></a></li>
-		  <li class="page-item"><a class="page-link" href="#">Next</a></li>
+		  <li class="page-item" th:classappend="${!pager.pre}? 'disabled'">
+		  	<a class="page-link pager" href="#" th:title="${pager.startNum-1}">Previous</a>
+		  </li>
+		  <li class="page-item" th:each="i : ${#numbers.sequence(pager.startNum, pager.lastNum)}">
+		  	<a class="page-link pager" href="#" th:title="${i}" th:text="${i}"></a>
+		  </li>
+		  <li class="page-item"  th:classappend="${!pager.next}? 'disabled'">
+		  	<a class="page-link pager" href="#" th:title="${pager.lastNum+1}">Next</a>
+		  </li>
 		</ul>
 	</div>
 <div th:replace="/fragments/default::footer"></div>
-<script type="text/javascript">
-
-</script>
+<script type="text/javascript" th:src="@{/js/boardSearch.js}"></script>
 </body>
 </html>
