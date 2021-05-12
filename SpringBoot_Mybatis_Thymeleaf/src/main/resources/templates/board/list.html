@@ -37,7 +37,7 @@
 	      						<!-- @{|${board}select|} -->
 	      						<!-- parameter전송 @{URL주소(파라미터명=값, 파라미터명2=값2,...)} -->
 	      <td><a href="#" th:href="@{select(num=${board.num}, title=${board.title})}" th:text="${board.title}">Mark</a></td>
-	      <td th:text="${board.id}">Otto</td>
+	      <td th:text="${board.writer}">Otto</td>
 	      <td th:text="${board.regDate}">Otto</td>
 	      <td th:text="${board.hit}">@mdo</td>
 	      <td th:text="${state.index}">@mdo</td>
@@ -52,7 +52,17 @@
 	  </tbody>
 	</table>
 	
-	
+	<a href="#" class="btn btn-primary" th:href="@{./insert}">Write</a>
+	<div class="container d-flex justify-content-center">
+		<ul class="pagination">
+		  <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+		  <li class="page-item" th:each="i : ${#numbers.sequence(pager.startNum, pager.lastNum)}"><a class="page-link" href="#" th:text="${i}"></a></li>
+		  <li class="page-item"><a class="page-link" href="#">Next</a></li>
+		</ul>
+	</div>
 <div th:replace="/fragments/default::footer"></div>
+<script type="text/javascript">
+
+</script>
 </body>
 </html>

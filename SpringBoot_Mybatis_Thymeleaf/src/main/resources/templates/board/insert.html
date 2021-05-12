@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link th:include="/fragments/default::header (|${board}Insert|)">
+</head>
+<body>
+<div th:replace="/fragments/default::navbar"></div>
+<div th:replace="/fragments/default::jumbo"></div>
+<div class="container">
+	<h1>Board Insert</h1>
+	<form id="frm" method="post" th:action="@{./insert}">
+		<div class="form-group">
+		<label>글 제목 : <input type="text" class="form-control" name="title"></label><br>
+		<label>작성자 : <input type="text" class="form-control" name="writer"></label><br>
+		<textarea name="contents" class="form-control">
+		
+		</textarea>
+		<input type="submit" class="btn btn-primary" value="write">
+		</div>
+	</form>
+</div>
+<div th:replace="/fragments/default::footer"></div>
+</body>
+</html>
