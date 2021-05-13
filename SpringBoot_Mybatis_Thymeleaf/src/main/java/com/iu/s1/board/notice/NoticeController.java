@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.iu.s1.board.BoardVO;
 import com.iu.s1.util.Pager;
@@ -46,8 +47,10 @@ public class NoticeController {
 	}
 	
 	@PostMapping("insert")
-	public String setInsert(NoticeVO noticeVO)throws Exception{
-		noticeService.setBoard(noticeVO);
+	public String setInsert(NoticeVO noticeVO, MultipartFile[] files)throws Exception{
+		
+		
+		noticeService.setBoard(noticeVO, files);
 		return "redirect:./list";
 	}
 	
@@ -65,7 +68,7 @@ public class NoticeController {
 	}
 	
 	@PostMapping("update")
-	public String setUpdate(NoticeVO noticeVO)throws Exception{
+	public String setUpdate(NoticeVO noticeVO, MultipartFile[] files)throws Exception{
 		noticeService.setUpdate(noticeVO);
 		return "redirect:./list";
 	}

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(board, sp)">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- include summernote css/js -->
+<link th:include="/fragments/default::header(|${board} ${sp}|)">
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+</head>
+<body>
+	
+</body>
+</html>

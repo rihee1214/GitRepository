@@ -2,6 +2,8 @@ package com.iu.s1.board;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.iu.s1.util.Pager;
 
 public interface BoardService {
@@ -13,7 +15,7 @@ public interface BoardService {
 		//TotalCount
 		public Long getTotalCount(Pager pager)throws Exception;
 		//Insert
-		public Long setBoard(BoardVO boardVO)throws Exception;
+		public Long setBoard(BoardVO boardVO, MultipartFile[] files)throws Exception;
 		//Update
 		public Long setUpdate(BoardVO boardVO)throws Exception;
 		//HitUpdate

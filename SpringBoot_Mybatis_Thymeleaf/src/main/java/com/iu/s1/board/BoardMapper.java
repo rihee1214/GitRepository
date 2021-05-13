@@ -20,4 +20,6 @@ public interface BoardMapper {
 	public Long setHitUpdate(BoardVO boardVO)throws Exception;
 	//Delete
 	public Long setDelete(BoardVO boardVO)throws Exception;
+	//FileInsert
+	public Long setFileInsert(BoardFileVO boardFileVO)throws Exception;
 }

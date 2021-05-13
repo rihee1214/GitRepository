@@ -29,13 +29,26 @@
   	limit #{startRow}, #{perPage}
   	<!-- limit 시작 index번호(0 부터 시작), 가지고 올 개수 -->
   	</select>
-  	<select id="getSelect" parameterType="NoticeVO" resultType="NoticeVO">
-  		select * from notice where num = #{num}
+  	<resultMap type="NoticeVO" id="NoticeAndFile">
+  		<id property="num" column="num"/>
+  		<result property="title" column="title"/>
+  		<result property="writer" column="writer"/>
+  		<result property="contents" column="contents"/>
+  		<result property="regDate" column="regdate"/>
+  		<result property="hit" column="hit"/>
+  		<collection property="boardFileVOs" javaType="java.util.List" ofType="BoardFileVO">
+  			<id property="fileNum" column="filenum"/>
+  			<result property="fileName" column="filename"/>
+  			<result property="oriName" column="oriname"/>
+  		</collection>
+  	</resultMap>
+  	<select id="getSelect" parameterType="NoticeVO" resultMap="NoticeAndFile">
+  		SELECT N.*, NF.* FROM notice N LEFT JOIN noticefiles NF ON N.num=NF.num WHERE N.num=#{num};
   	</select>
   	<update id="setHitUpdate" parameterType="NoticeVO">
   		update notice set hit=hit+1 where num=#{num}
   	</update>
-  	<insert id="setBoard" parameterType="NoticeVO">
+  	<insert id="setBoard" parameterType="NoticeVO" useGeneratedKeys="true" keyProperty="num">
   		insert into notice (num, title, writer, contents, regDate, hit) values(#{num}, #{title}, #{writer}, #{contents}, sysdate(), 0)
   	</insert>
   	<select id="getTotalCount" parameterType="Pager" resultType="java.lang.Long">
@@ -50,5 +63,10 @@
  	<update id="setUpdate">
  		update notice set title=#{title}, writer=#{writer}, contents=#{contents} where num=#{num}
  	</update>
+ 	
+ 	<insert id="setFileInsert" parameterType="BoardFileVO">
+ 		insert into noticefiles(num, filename, oriname)
+ 		values(#{num}, #{fileName}, #{oriName})
+ 	</insert>
  	
   </mapper>

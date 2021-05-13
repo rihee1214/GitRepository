@@ -18,8 +18,11 @@
   </thead>
   <tbody>
   	<tr>
-  		<td colspan='4'></td>
-  		<td>
+  		<td></td>
+  		<td colspan="4">
+  			<p th:each="fileVO : ${select.boardFileVOs}">
+  				<a th:href="@{|/upload/${board}/${fileVO.fileName}|}" th:text="${fileVO.oriName}"></a>
+  			</p>
   			<a th:href="@{./update(num=${select.num})}" class="btn btn-success">Update</a>
   			<a th:href="@{./delete(num=${select.num})}" class="btn btn-danger">Delete</a>
   		</td>
