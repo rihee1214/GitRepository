@@ -23,7 +23,7 @@ class NoticeTest {
 			boardVO.setTitle("title"+i);
 			boardVO.setContents("contents"+i);
 			boardVO.setWriter("writer"+i);
-			noticeService.setBoard(boardVO);
+			//noticeService.setBoard(boardVO);
 			Thread.sleep(500);
 		}
 		System.out.println("finish");

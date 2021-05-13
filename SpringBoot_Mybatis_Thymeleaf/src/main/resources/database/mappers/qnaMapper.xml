@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iu.s1.board.qna.QnaMapper">
+
+	<sql id="searcher">
+		<where>
+			<choose>
+				<when test="kind=='writer'"> 
+					writer like concat('%', #{search},'%')
+				</when>
+				<when test="kind='title'">
+					title like concat('%', #{search},'%')
+				</when>
+				<otherwise>
+					contents like concat('%', #{search}, '%')
+				</otherwise>
+			</choose>
+		</where>
+	</sql>
+	
+	<select id="getList" parameterType="Pager" resultType="QnaVO">
+		select * from qna
+		<include refid="searcher"></include>
+		order by num desc
+		limit ${startRow}, ${perPage}
+	</select>
+	
+	<select id="getTotalCount" parameterType="Pager" resultType="java.lang.Long">
+		select count(num) from qna 
+		<include refid="searcher"></include>
+	</select>
+	
+	<resultMap type="QnaVO" id="FileAndQNA">
+		<id property="num" column="num"/>
+		<result property="title" column="title"/>
+		<result property="writer" column="writer"/>
+		<result property="contents" column="contents"/>
+		<result property="regDate" column="regdate"/>
+		<result property="hit" column="hit"/>
+		<collection property="boardFileVOs" javaType="java.util.List" ofType="BoardFileVO">
+			<id property="fileNum" column="filenum"/>
+			<result property="fileName" column="filename"/>
+			<result property="oriName" column="oriname"/>
+		</collection>
+	</resultMap>
+	
+	<select id="getSelect" parameterType="QnaVO" resultMap="FileAndQNA">
+		select Q.*, QF.* from qna Q left join qnafiles QF on Q.num=QF.num where Q.num=#{num}
+	</select>
+	
+	<update id="setHitUpdate" parameterType="QnaVO">
+		update qna set hit=hit+1 where num=#{num}
+	</update>
+	
+	<update id="setUpdate" parameterType="QnaVO">
+		update qna set writer=#{writer}, title=#{title}, contents=#{contents} where num=#{num}
+	</update>
+	
+	<insert id="setBoard" parameterType="QnaVO" useGeneratedKeys="true" keyProperty="num">
+		insert into qna(num, title, writer, contents, regdate, hit) 
+		values(#{num}, #{title}, #{writer}, #{contents}, sysdate(), 0)
+	</insert>
+	
+	<insert id="setFileInsert" parameterType="BoardFileVO">
+		insert into qnafiles(num, filename, oriname)
+		values(#{num}, #{fileName}, #{oriName})
+	</insert>
+	
+	<delete id="setDelete" parameterType="QnaVO">
+		delete from qna where num=#{num}
+	</delete>
+</mapper>

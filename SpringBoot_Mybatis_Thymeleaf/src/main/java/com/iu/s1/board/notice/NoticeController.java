@@ -48,8 +48,6 @@ public class NoticeController {
 	
 	@PostMapping("insert")
 	public String setInsert(NoticeVO noticeVO, MultipartFile[] files)throws Exception{
-		
-		
 		noticeService.setBoard(noticeVO, files);
 		return "redirect:./list";
 	}
