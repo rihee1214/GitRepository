@@ -70,4 +70,17 @@ public class QnaController {
 		qnaService.setUpdate(boardVO);
 		return "redirect:./list";
 	}
+	
+	@GetMapping("reply")
+	public String setReply(BoardVO boardVO, Model model)throws Exception{
+		model.addAttribute("ar", boardVO);
+		model.addAttribute("sp", "reply");
+		return "board/form";
+	}
+	
+	@PostMapping("reply")
+	public String setReply(BoardVO boardVO, MultipartFile[] files)throws Exception{
+		qnaService.setReply(boardVO, files);
+		return "redirect:./list";
+	}
 }

@@ -75,4 +75,24 @@ public class QnaService implements BoardService{
 		return qnaMapper.setDelete(boardVO);
 	}
 
+	public Long setReply(BoardVO boardVO, MultipartFile[] files)throws Exception{
+		QnaVO qnaVO = qnaMapper.getReplySelect(boardVO);
+		qnaVO.setStep(qnaVO.getStep()+1);
+		qnaVO.setDepth(qnaVO.getDepth()+1);
+		qnaMapper.setInsertUpdate(qnaVO);
+		Long result = qnaMapper.setReply(qnaVO);
+		
+		String filePath="upload/qna/";
+		for(MultipartFile file : files) {
+			if(file.getSize()!=0) {
+				BoardFileVO boardFileVO = new BoardFileVO();
+				boardFileVO.setNum(boardVO.getNum());
+				boardFileVO.setOriName(file.getOriginalFilename());
+				boardFileVO.setFileName(fileManager.save(file, filePath));
+				qnaMapper.setFileInsert(boardFileVO);
+			}
+		}
+		
+		return result;
+	}
 }

@@ -50,6 +50,10 @@
 		select Q.*, QF.* from qna Q left join qnafiles QF on Q.num=QF.num where Q.num=#{num}
 	</select>
 	
+	<select id="getReplySelect" parameterType="BoardVO" resultType="QnaVO">
+		select * from qna where num=#{num}
+	</select>
+	
 	<update id="setHitUpdate" parameterType="QnaVO">
 		update qna set hit=hit+1 where num=#{num}
 	</update>
@@ -58,14 +62,23 @@
 		update qna set writer=#{writer}, title=#{title}, contents=#{contents} where num=#{num}
 	</update>
 	
+	<update id="setInsertUpdate" parameterType="QnaVO">
+		update qna set step=step+1 where ref=#{ref} and step>=#{step}
+	</update>
+	
 	<insert id="setBoard" parameterType="QnaVO" useGeneratedKeys="true" keyProperty="num">
-		insert into qna(num, title, writer, contents, regdate, hit) 
-		values(#{num}, #{title}, #{writer}, #{contents}, sysdate(), 0)
+		insert into qna(num, title, writer, contents, regdate, hit, ref, step, depth) 
+		values(#{num}, #{title}, #{writer}, #{contents}, sysdate(), 0, 0, 0, 0)
 	</insert>
 	
 	<insert id="setFileInsert" parameterType="BoardFileVO">
 		insert into qnafiles(num, filename, oriname)
 		values(#{num}, #{fileName}, #{oriName})
+	</insert>
+	
+	<insert id="setReply" parameterType="QnaVO">
+		insert into qna(title, writer, contents, regdate, hit, ref, step, depth)
+		values(#{title}, #{writer}, #{contents}, sysdate(), 0, #{ref}, #{step}, #{depth})
 	</insert>
 	
 	<delete id="setDelete" parameterType="QnaVO">
