@@ -25,7 +25,9 @@
   			</p>
   			<a th:href="@{./update(num=${select.num})}" class="btn btn-success">Update</a>
   			<a th:href="@{./delete(num=${select.num})}" class="btn btn-danger">Delete</a>
-  			<a th:if="#{board eq 'qna'}" th:href="@{./reply(num=${select.num})}" class="btn btn-info">Reply</a>
+  			<span th:if="${board.equals('Qna')}">
+  				<a th:href="@{./reply(num=${select.num})}" class="btn btn-info">Reply</a>
+  			</span>
   		</td>
   	</tr>
     <tr>
