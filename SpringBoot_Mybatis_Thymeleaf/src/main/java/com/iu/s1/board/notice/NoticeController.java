@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.iu.s1.board.BoardVO;
 import com.iu.s1.util.Pager;
 
 @Controller
@@ -32,18 +33,40 @@ public class NoticeController {
 	
 	@GetMapping("select")
 	public String getSelect(NoticeVO noticeVO, Model model)throws Exception{
+		noticeService.setHitUpdate(noticeVO);
 		model.addAttribute("select", noticeService.getSelect(noticeVO));
 		return "board/select";
 	}
 	
 	@GetMapping("insert")
-	public String setInsert()throws Exception{
-		return "board/insert";
+	public String setInsert(Model model)throws Exception{
+		model.addAttribute("ar", new BoardVO());
+		model.addAttribute("sp", "insert");
+		return "board/form";
 	}
 	
 	@PostMapping("insert")
 	public String setInsert(NoticeVO noticeVO)throws Exception{
 		noticeService.setBoard(noticeVO);
-		return "redirect:/notice/list";
+		return "redirect:./list";
+	}
+	
+	@GetMapping("delete")
+	public String setDelete(NoticeVO noticeVO)throws Exception{
+		noticeService.setDelete(noticeVO);
+		return "redirect:./list";
+	}
+	
+	@GetMapping("update")
+	public String setUpdate(NoticeVO noticeVO, Model model)throws Exception{
+		model.addAttribute("ar", noticeService.getSelect(noticeVO));
+		model.addAttribute("sp", "update");
+		return "board/form";
+	}
+	
+	@PostMapping("update")
+	public String setUpdate(NoticeVO noticeVO)throws Exception{
+		noticeService.setUpdate(noticeVO);
+		return "redirect:./list";
 	}
 }

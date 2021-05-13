@@ -15,9 +15,9 @@ public interface BoardMapper {
 	//Insert
 	public Long setBoard(BoardVO boardVO)throws Exception;
 	//Update
-	public Integer setUpdate(BoardVO boardVO)throws Exception;
+	public Long setUpdate(BoardVO boardVO)throws Exception;
 	//HitUpdate
-	public Integer setHitUpdate(BoardVO boardVO)throws Exception;
+	public Long setHitUpdate(BoardVO boardVO)throws Exception;
 	//Delete
-	public Integer setDelete(BoardVO boardVO)throws Exception;
+	public Long setDelete(BoardVO boardVO)throws Exception;
 }

@@ -32,6 +32,9 @@
   	<select id="getSelect" parameterType="NoticeVO" resultType="NoticeVO">
   		select * from notice where num = #{num}
   	</select>
+  	<update id="setHitUpdate" parameterType="NoticeVO">
+  		update notice set hit=hit+1 where num=#{num}
+  	</update>
   	<insert id="setBoard" parameterType="NoticeVO">
   		insert into notice (num, title, writer, contents, regDate, hit) values(#{num}, #{title}, #{writer}, #{contents}, sysdate(), 0)
   	</insert>
@@ -39,4 +42,13 @@
   		select count(num) from notice
   		<include refid="searcher"></include>
  	</select>
+ 	
+ 	<delete id="setDelete" parameterType="NoticeVO">
+ 		delete from notice where num=#{num}
+ 	</delete>
+ 	
+ 	<update id="setUpdate">
+ 		update notice set title=#{title}, writer=#{writer}, contents=#{contents} where num=#{num}
+ 	</update>
+ 	
   </mapper>

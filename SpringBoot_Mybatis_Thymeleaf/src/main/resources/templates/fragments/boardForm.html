@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link th:include="/fragments/default::header">
+</head>
+<body>
+<div th:replace="/fragments/default::navbar"></div>
+<div th:replace="/fragments/default::jumbo"></div>
+<div class="container" th:fragment="form(sp)">
+	<h1 th:text="|Board ${sp}|"></h1>
+	<form id="frm" method="post" th:action="@{./}+${sp}">
+		<div class="form-group">
+		<input type="hidden" name="num" th:value="${ar.num}">
+		<label>글 제목 : <input type="text" class="form-control" name="title" th:value="${ar.title}"></label><br>
+		<label>작성자 : <input type="text" class="form-control" name="writer" th:value="${ar.writer}"></label><br>
+		<textarea name="contents" class="form-control" th:text="${ar.contents}">
+		
+		</textarea>
+		<input type="submit" class="btn btn-primary" value="write">
+		</div>
+	</form>
+</div>
+<div th:replace="/fragments/default::footer"></div>
+</body>
+</html>

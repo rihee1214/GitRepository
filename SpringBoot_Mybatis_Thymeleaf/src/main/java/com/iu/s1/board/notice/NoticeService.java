@@ -32,21 +32,18 @@ public class NoticeService implements BoardService{
 	}
 
 	@Override
-	public Integer setUpdate(BoardVO boardVO) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public Long setUpdate(BoardVO boardVO) throws Exception {
+		return noticeMapper.setUpdate(boardVO);
 	}
 
 	@Override
-	public Integer setHitUpdate(BoardVO boardVO) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public Long setHitUpdate(BoardVO boardVO) throws Exception {
+		return noticeMapper.setHitUpdate(boardVO);
 	}
 
 	@Override
-	public Integer setDelete(BoardVO boardVO) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public Long setDelete(BoardVO boardVO) throws Exception {
+		return noticeMapper.setDelete(boardVO);
 	}
 
 	@Override
