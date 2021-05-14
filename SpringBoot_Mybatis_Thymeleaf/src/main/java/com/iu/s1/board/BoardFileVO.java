@@ -1,12 +1,13 @@
 package com.iu.s1.board;
 
-import lombok.Data;
+import com.iu.s1.util.FileVO;
 
-@Data
-public class BoardFileVO {
+import lombok.Getter;
+import lombok.Setter;
 
-	private Long fileNum;
+@Getter
+@Setter
+public class BoardFileVO extends FileVO {
+
 	private Long num;
-	private String fileName;
-	private String oriName;
 }

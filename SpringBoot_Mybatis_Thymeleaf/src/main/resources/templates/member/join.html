@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link th:include="/fragments/default::header ('MemberJoin')">
+<link th:replace="/member/login::cssformember">
+</head>
+<body>
+	<!-- header -->
+	<nav th:replace="/fragments/default::navbar"></nav>
+	<!-- jumbo -->
+	<div th:replace="/fragments/default::jumbo"></div>
+	<!-- /member/memberJoin -->
+	<!--  com.....member.MemberController.setJoin -->
+	<h1>Member Join Page</h1>
+	<div class="login-page">
+	  <div class="form">
+	    <form class="register-form" method="post" th:action="@{./join}" enctype="multipart/form-data">
+	      <input type="text" placeholder="username" name="userName"/>
+	      <input type="password" placeholder="password" name="password"/>
+	      <input type="text" placeholder="name" name="name"/>
+	      <input type="text" placeholder="email address" name="email"/>
+	      <input type="tel" placeholder="phone number" name="phone"/>
+	      <input type="file" name="file"/>
+	      <button>create</button>
+	      <p class="message">Already registered? <a th:href="@{./login}">Sign In</a></p>
+	    </form>
+	  </div>
+	</div>
+	<!-- footer -->
+	<div th:replace="/fragments/default::footer"></div>
+</body>
+</html>
