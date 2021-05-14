@@ -48,7 +48,7 @@
   	<update id="setHitUpdate" parameterType="NoticeVO">
   		update notice set hit=hit+1 where num=#{num}
   	</update>
-  	<insert id="setBoard" parameterType="NoticeVO" useGeneratedKeys="true" keyProperty="num">
+  	<insert id="setBoard" parameterType="NoticeVO" useGeneratedKeys="true" keyProperty="num" >
   		insert into notice (num, title, writer, contents, regDate, hit) values(#{num}, #{title}, #{writer}, #{contents}, sysdate(), 0)
   	</insert>
   	<select id="getTotalCount" parameterType="Pager" resultType="java.lang.Long">

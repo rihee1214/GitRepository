@@ -21,7 +21,8 @@
   		<td></td>
   		<td colspan="4">
   			<p th:each="fileVO : ${select.boardFileVOs}">
-  				<a th:href="@{|/upload/${board}/${fileVO.fileName}|}" th:text="${fileVO.oriName}"></a>
+  				<!-- <a th:href="@{|/upload/${board}/${fileVO.fileName}|}" th:text="${fileVO.oriName}"></a> -->
+  				<a th:href="@{./fileDown(fileName=${fileVO.fileName}, oriName=${fileVO.oriName})}" th:text="${fileVO.oriName}"></a>
   			</p>
   			<a th:href="@{./update(num=${select.num})}" class="btn btn-success">Update</a>
   			<a th:href="@{./delete(num=${select.num})}" class="btn btn-danger">Delete</a>
@@ -31,7 +32,7 @@
   		</td>
   	</tr>
     <tr>
-      <td colspan="5" th:text="${select.contents}">1</td>
+      <td colspan="5" th:utext="${select.contents}">1</td>
     </tr>
   </tbody>
 </table>

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.s1.board.BoardVO;
 import com.iu.s1.util.Pager;
@@ -69,5 +70,18 @@ public class NoticeController {
 	public String setUpdate(NoticeVO noticeVO, MultipartFile[] files)throws Exception{
 		noticeService.setUpdate(noticeVO);
 		return "redirect:./list";
+	}
+	
+	// /notice/fileDown이라는 주소로 들어오게 된다.
+	//문제는 이게 template안에 들어가는것이 아니라, custom view로 넘어가게 해주어야한다.
+	//fileDown
+	@GetMapping("fileDown")
+	public ModelAndView fileDown(String fileName, String oriName)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("fileName", fileName);
+		mv.addObject("oriName", oriName);
+		mv.addObject("filePath", "/upload/notice/");
+		mv.setViewName("fileDown");
+		return mv;
 	}
 }

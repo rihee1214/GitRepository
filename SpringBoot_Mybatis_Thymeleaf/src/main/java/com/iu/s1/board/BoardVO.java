@@ -23,12 +23,4 @@ public class BoardVO {
 	private String contents;
 	private Date regDate;
 	private Long hit;
-
-	public BoardVO() {
-		
-	}
-	
-	public BoardVO(Long num) {
-		this.num=num;
-	}
 }
