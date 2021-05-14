@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.iu.s1.board.BoardFileVO;
@@ -30,11 +31,15 @@ public class NoticeService implements BoardService{
 		return noticeMapper.getTotalCount(pager);
 	}
 
-
 	@Override
+	@Transactional(rollbackFor = Exception.class) //Exception이 발생하면 rollback 클래스에 줘도 된다.
 	public Long setBoard(BoardVO boardVO, MultipartFile[] files) throws Exception {
 		String filePath = "upload/notice/";
 		Long result = noticeMapper.setBoard(boardVO);
+		if(result<=0) {
+			//에러는 아니지만 원하는 방향은 아니기 때문에 강제로 예외 발생
+			throw new Exception();
+		}
 		for(MultipartFile file : files) {
 			if(file.getSize()!=0) {
 				BoardFileVO boardFileVO = new BoardFileVO();
