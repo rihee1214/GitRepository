@@ -43,6 +43,8 @@ public class QnaService implements BoardService{
 		// TODO Auto-generated method stub
 		Long result = qnaMapper.setBoard(boardVO);
 		
+		qnaMapper.setBoardUpdate(new QnaVO(boardVO.getNum()));
+		
 		String filePath="upload/qna/";
 		for(MultipartFile file : files) {
 			if(file.getSize()!=0) {

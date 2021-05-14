@@ -10,6 +10,8 @@ public interface QnaMapper extends BoardMapper{
 
 	public QnaVO getReplySelect(BoardVO boardVO)throws Exception;
 	
+	public Long setBoardUpdate(QnaVO qnaVO)throws Exception;
+	
 	public Long setReply(QnaVO qnaVO)throws Exception;
 	
 	public Long setInsertUpdate(QnaVO qnaVO)throws Exception;

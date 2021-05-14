@@ -73,7 +73,7 @@ public class QnaController {
 	
 	@GetMapping("reply")
 	public String setReply(BoardVO boardVO, Model model)throws Exception{
-		model.addAttribute("ar", boardVO);
+		model.addAttribute("ar", new BoardVO(boardVO.getNum()));
 		model.addAttribute("sp", "reply");
 		return "board/form";
 	}
