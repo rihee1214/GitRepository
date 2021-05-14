@@ -81,6 +81,10 @@ public class NoticeController {
 		mv.addObject("fileName", fileName);
 		mv.addObject("oriName", oriName);
 		mv.addObject("filePath", "/upload/notice/");
+		
+		//view의 이름은 bean의 이름과 일치시켜주어야 한다.
+		//component에 아무것도 적혀져 있는 것이 없기 때문에 fileDown으로 자동 생성된다.
+		//component옆에 적어주어야 해당 이름으로 찾아서 보내줄 수 있다.
 		mv.setViewName("fileDown");
 		return mv;
 	}
