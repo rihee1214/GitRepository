@@ -14,19 +14,21 @@
 	<h1>Member Join Page</h1>
 	<div class="login-page">
 	  <div class="form">
-	    <form class="register-form" method="post" th:action="@{./join}" enctype="multipart/form-data">
-	      <input type="text" placeholder="username" name="userName"/>
-	      <input type="password" placeholder="password" name="password"/>
-	      <input type="text" placeholder="name" name="name"/>
-	      <input type="text" placeholder="email address" name="email"/>
-	      <input type="tel" placeholder="phone number" name="phone"/>
+	    <form class="register-form" id="regist-member" method="post" th:action="@{./join}" enctype="multipart/form-data">
+	      <input type="text" placeholder="username" name="userName" id="inputusername" pattern="[^\s]{6,15}" title="영문자, 숫자를 포함한 6~15글자"/>
+	      <span id="result"></span>
+	      <input type="password" placeholder="password" name="password" pattern="[^\s]{6,15}" title="영문자, 숫자를 포함한 6~15글자"/>
+	      <input type="text" placeholder="name" name="name" pattern="[^\s]{1,}"/>
+	      <input type="text" placeholder="email address" name="email" pattern=".{1,}@.{1,}\..{1,}" title="@와 .이 존재해야 합니다."/>
+	      <input type="tel" placeholder="-기호없이 전화번호를 입력해 주세요" name="phone" pattern="[0-9]{10,}" title="전화번호를 정확히 입력해 주세요"/>
 	      <input type="file" name="file"/>
-	      <button>create</button>
-	      <p class="message">Already registered? <a th:href="@{./login}">Sign In</a></p>
 	    </form>
+	    <button id="joinCheck">create</button>
+	    <p class="message">Already registered? <a th:href="@{./login}">Sign In</a></p>
 	  </div>
 	</div>
 	<!-- footer -->
 	<div th:replace="/fragments/default::footer"></div>
+<script type="text/javascript" th:src="@{/js/memberJoin.js?ver=1}"></script>
 </body>
 </html>

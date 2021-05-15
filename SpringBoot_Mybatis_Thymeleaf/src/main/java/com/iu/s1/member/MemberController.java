@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
@@ -18,13 +19,25 @@ public class MemberController {
 	private MemberService memberService;
 	
 	@GetMapping("join")
-	public void setJoin()throws Exception{
-		
-	}
+	public void setJoin()throws Exception{}
 	
 	@PostMapping("join")
-	public void setJoin(MemberVO memberVO, MultipartFile file)throws Exception{
+	public String setJoin(MemberVO memberVO, MultipartFile file)throws Exception{
 		memberService.setMember(memberVO, file);
+		return "redirect:/";
+	}
+	
+	@GetMapping("idcheck")
+	@ResponseBody
+	public String getIdCheck(MemberVO memberVO)throws Exception{
+		String result;
+		memberVO = memberService.getCheck(memberVO);
+		if(memberVO!=null) {
+			result = "사용할 수 없는 아이디 입니다.";
+		}else {
+			result = "사용할 수 있는 아이디 입니다.";
+		}
+		return result;
 	}
 	
 	@GetMapping("login")

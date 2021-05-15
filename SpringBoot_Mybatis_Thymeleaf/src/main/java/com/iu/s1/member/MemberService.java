@@ -19,6 +19,10 @@ public class MemberService {
 		return memberMapper.getLogin(memberVO);
 	}
 	
+	public MemberVO getCheck(MemberVO memberVO)throws Exception{
+		return memberMapper.getCheck(memberVO);
+	}
+	
 	public MemberVO getPage(MemberVO memberVO)throws Exception{
 		return memberMapper.getPage(memberVO);
 	}

@@ -20,6 +20,10 @@
 	<select id="getLogin" parameterType="MemberVO" resultType="MemberVO">
 		select * from member where username=#{userName} and password=#{password}
 	</select>
+	
+	<select id="getCheck" parameterType="MemberVO" resultType="MemberVO">
+		select * from member where username=#{userName}
+	</select>
 
 	<select id="getPage" parameterType="MemberVO" resultMap="UserAndFile">
 		select M.*, MF.* from member M left join memberfile MF on M.username=MF.username where M.username=#{userName}

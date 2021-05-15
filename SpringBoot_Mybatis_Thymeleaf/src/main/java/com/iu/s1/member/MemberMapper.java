@@ -7,6 +7,8 @@ public interface MemberMapper {
 
 	//로그인 체크
 	public MemberVO getLogin(MemberVO memberVO)throws Exception;
+	//회원가입 아이디 체크
+	public MemberVO getCheck(MemberVO memberVO)throws Exception;
 	//멤버 페이지
 	public MemberVO getPage(MemberVO memberVO)throws Exception;
 	//회원가입

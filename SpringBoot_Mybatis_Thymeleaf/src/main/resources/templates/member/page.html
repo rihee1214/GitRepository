@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link th:inlcude="/fragments/default::header ('Member Page')"/>
 </head>
 <body>
+<div th:replace="/fragments/default::navbar"></div>
 
+<div th:replace="/fragments/default::jumbo"></div>
+
+<!-- 회원 정보 수정을 만드는게 좋으려나 -->
+
+<div th:repalce="/fragments/default::footer"></div>
 </body>
 </html>
