@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.iu.s1.board.BoardFileVO;
@@ -39,9 +40,14 @@ public class QnaService implements BoardService{
 	}
 
 	@Override
+	@Transactional(rollbackFor = Exception.class)
 	public Long setBoard(BoardVO boardVO, MultipartFile[] files) throws Exception {
 		// TODO Auto-generated method stub
 		Long result = qnaMapper.setBoard(boardVO);
+		
+		if(result<1) {
+			throw new Exception();
+		}
 		
 		qnaMapper.setBoardUpdate(new QnaVO(boardVO.getNum()));
 		
@@ -74,6 +80,7 @@ public class QnaService implements BoardService{
 	@Override
 	public Long setDelete(BoardVO boardVO) throws Exception {
 		// TODO Auto-generated method stub
+		//파일 이름을 조회한 후 hdd에서 파일들을 삭제해야한다.
 		return qnaMapper.setDelete(boardVO);
 	}
 

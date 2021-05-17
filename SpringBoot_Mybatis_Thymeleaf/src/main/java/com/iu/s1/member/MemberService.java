@@ -30,15 +30,19 @@ public class MemberService {
 	@Transactional(rollbackFor = Exception.class)
 	public Long setMember(MemberVO memberVO, MultipartFile file)throws Exception{
 		Long result = memberMapper.setMember(memberVO);
-		if(file.getSize()!=0) {
+		
+		if(file.getSize()!=0&&result>0) {
 			String path = "upload/member/";
 			MemberFileVO memberFileVO = new MemberFileVO(fileManager.save(file, path));
 			memberFileVO.setOriName(file.getOriginalFilename());
 			memberFileVO.setUserName(memberVO.getUserName());
-			if(memberMapper.setMemberFile(memberFileVO)==0) {
-				throw new Exception();
-			}
+			result=memberMapper.setMemberFile(memberFileVO);
 		}
+		
+		if(result<1) {
+			throw new Exception();
+		}
+		
 		return result;
 	}
 }

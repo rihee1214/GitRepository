@@ -23,7 +23,7 @@
 	<select id="getList" parameterType="Pager" resultType="QnaVO">
 		select * from qna
 		<include refid="searcher"></include>
-		group by ref order by num desc, step asc
+		order by ref desc, step asc
 		limit ${startRow}, ${perPage}
 	</select>
 	
@@ -39,6 +39,9 @@
 		<result property="contents" column="contents"/>
 		<result property="regDate" column="regdate"/>
 		<result property="hit" column="hit"/>
+		<result property="ref" column="ref"/>
+		<result property="step" column="step"/>
+		<result property="depth" column="depth"/>
 		<collection property="boardFileVOs" javaType="java.util.List" ofType="BoardFileVO">
 			<id property="fileNum" column="filenum"/>
 			<result property="fileName" column="filename"/>

@@ -23,4 +23,5 @@ public class BoardVO {
 	private String contents;
 	private Date regDate;
 	private Long hit;
+	
 }

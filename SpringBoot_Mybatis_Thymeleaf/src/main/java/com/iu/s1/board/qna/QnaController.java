@@ -78,6 +78,7 @@ public class QnaController {
 		return "board/form";
 	}
 	
+	
 	@PostMapping("reply")
 	public String setReply(BoardVO boardVO, MultipartFile[] files)throws Exception{
 		qnaService.setReply(boardVO, files);
