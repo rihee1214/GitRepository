@@ -1,8 +1,10 @@
 package com.iu.s1.board.notice;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,6 +22,9 @@ public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
 	
+	@Value("${board.notice.filePath}")
+	private String filePath;
+	
 	@ModelAttribute("board")
 	public String getBoard() {
 		return "Notice";
@@ -27,6 +32,7 @@ public class NoticeController {
 	
 	@GetMapping("list")
 	public String getList(Pager pager, Model model)throws Exception{
+		System.out.println(filePath);
 		pager.makeRow(noticeService.getTotalCount(pager));
 		model.addAttribute("list", noticeService.getList(pager));
 		model.addAttribute("pager", pager);
@@ -88,4 +94,5 @@ public class NoticeController {
 		mv.setViewName("fileDown");
 		return mv;
 	}
+
 }

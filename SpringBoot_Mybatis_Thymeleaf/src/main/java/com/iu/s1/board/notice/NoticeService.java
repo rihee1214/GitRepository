@@ -23,6 +23,7 @@ public class NoticeService implements BoardService{
 	
 	@Override
 	public List<BoardVO> getList(Pager pager) throws Exception {
+//		throw new ArithmeticException();
 		return noticeMapper.getList(pager);
 	}
 
