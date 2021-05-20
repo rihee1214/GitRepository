@@ -1,6 +1,5 @@
 package com.iu.s1.member;
 
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import lombok.Data;
@@ -8,13 +7,10 @@ import lombok.Data;
 @Data
 public class MemberVO {
 
+	private String username;
 	@Pattern(regexp = "[^\s]{6,15}")
-	private String userName;
 	private String password;
-	@NotNull
 	private String name;
 	private String email;
 	private String phone;
-	
-	private MemberFileVO memberFileVO;
 }

@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!doctype html>
-<html lang="en">
+<html>
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -44,6 +44,13 @@
 	    <h1 class="display-4">Fluid jumbotron</h1>
 	    <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
 	  </div>
+	</div>
+	<div class="container">
+		<!-- message -->
+		<h1>
+			<!-- properties의 key를 넣으면 된다. -->
+			<spring:message code="hello"></spring:message>
+		</h1>
 	</div>
 	
 	<c:import url="./fragments/frag.jsp"></c:import>

@@ -1,9 +1,11 @@
 package com.iu.s1.interceptor;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,17 +22,28 @@ public class TestInterceptor implements HandlerInterceptor{
 		// TODO Auto-generated method stub
 		System.out.println("Controller 진입");
 		
-//		HttpSession session = request.getSession();
-//		Object object = session.getAttribute("member");
-//		MemberVO memberVO = null;
-//		boolean result = false;
-//		
-//		if(object != null) {
-//			memberVO = (MemberVO)object;
-//			if(memberVO.getUserName().equals("admin")) {
-//				result = true;
-//			}
-//		}
+		HttpSession session = request.getSession();
+		Object object = session.getAttribute("member");
+		MemberVO memberVO = null;
+		boolean result = false;
+		
+		if(object != null) {
+			memberVO = (MemberVO)object;
+			if(memberVO.getUserName().equals("admin")) {
+				result = true;
+			}
+		}
+		
+		ClassPathResource classPathResource = new ClassPathResource("member");
+		System.out.println(classPathResource.getPath());
+		String path = classPathResource.getPath()+"/join";
+		
+		if(!result) {
+			request.setAttribute("name", "data");
+			RequestDispatcher view = request.getRequestDispatcher(path);
+			view.forward(request, response);
+		}
+		
 //		
 //		request.setAttribute("name", "data");
 //		RequestDispatcher view = request.getRequestDispatcher("view");
@@ -40,7 +53,7 @@ public class TestInterceptor implements HandlerInterceptor{
 //			response.sendRedirect("/member/login");
 //		}
 		
-		return true;
+		return result;
 	}
 	
 	//contoller 종료 후 실행
