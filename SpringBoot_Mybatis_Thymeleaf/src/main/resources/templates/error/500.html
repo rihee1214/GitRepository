@@ -7,8 +7,10 @@
 <body>
 
 <script type="text/javascript" th:inline="javascript">
-	const msg = [[${msg}]];
+/*<![CDATA[*/
+	const msg = /*[[${msg}]]*/ 'template';
 	alert(msg);
+/*]]>*/
 </script>
 </body>
 </html>
