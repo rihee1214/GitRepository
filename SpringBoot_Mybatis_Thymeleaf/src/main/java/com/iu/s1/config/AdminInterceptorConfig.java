@@ -16,9 +16,9 @@ public class AdminInterceptorConfig implements WebMvcConfigurer{
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		//registry.addInterceptor(adminInterceptor).addPathPatterns("/notice/**")
-		//										.excludePathPatterns("/notice/select")
-		//										.excludePathPatterns("/notice/list");
+		registry.addInterceptor(adminInterceptor).addPathPatterns("/notice/**")
+												.excludePathPatterns("/notice/select")
+												.excludePathPatterns("/notice/list");
 	}
 	
 }

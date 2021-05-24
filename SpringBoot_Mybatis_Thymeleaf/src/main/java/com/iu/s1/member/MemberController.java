@@ -1,11 +1,14 @@
 package com.iu.s1.member;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,15 +22,19 @@ public class MemberController {
 	private MemberService memberService;
 	
 	@GetMapping("join")
-	public void setJoin()throws Exception{}
+	public void setJoin(@ModelAttribute MemberVO memberVO)throws Exception{}
 	
 	@PostMapping("join")
-	public String setJoin(MemberVO memberVO, MultipartFile file)throws Exception{
+	public String setJoin(@Valid MemberVO memberVO, Errors errors, MultipartFile file)throws Exception{
+		System.out.println("controller");
+		if(errors.hasErrors()) {
+			return "member/join";
+		}
 		memberService.setMember(memberVO, file);
 		return "redirect:/";
 	}
 	
-	@GetMapping("idcheck")
+	@GetMapping(value="idcheck")
 	@ResponseBody
 	public String getIdCheck(MemberVO memberVO)throws Exception{
 		String result;

@@ -3,17 +3,25 @@ package com.iu.s1.member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.Errors;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.iu.s1.util.FileManager;
 
 @Service
-public class MemberService {
+public class MemberService{
 	
 	@Autowired
 	private MemberMapper memberMapper;
 	@Autowired
 	private FileManager fileManager;
+	
+	public boolean checkError(MemberVO memberVO, Errors errors) throws Exception{
+		boolean check = errors.hasErrors();
+		
+		
+		return check;
+	}
 	
 	public MemberVO getLogin(MemberVO memberVO)throws Exception{
 		return memberMapper.getLogin(memberVO);

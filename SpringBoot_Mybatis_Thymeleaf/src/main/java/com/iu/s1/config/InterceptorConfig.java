@@ -18,7 +18,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
 		// TODO Auto-generated method stub
 		// Interceptor 용 bean을 등록
 		// 어떤 url이 왔을 때 주입시킨 interceptor를 발동시킬건지 알려주는 역활을 한다.
-		registry.addInterceptor(testInterceptor).addPathPatterns("/notice/**").addPathPatterns("/qna/**").excludePathPatterns("/notice/select");
+		//registry.addInterceptor(testInterceptor).addPathPatterns("/notice/**").addPathPatterns("/qna/**").excludePathPatterns("/notice/select");
 		//여러개를 .으로 이어붙일 수도 있고 addPathPatterns는 interceptor추가 
 		//excludePathPatterns는 해당 패턴에서 interceptor 적용을 제외시키는 것을 말한다.
 		//이러한 방식을 method chaining이라고 한다.

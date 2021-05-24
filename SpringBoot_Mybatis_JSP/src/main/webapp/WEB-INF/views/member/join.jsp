@@ -12,10 +12,15 @@
 <body>
 <form:form action="./join" method="post" modelAttribute="memberVO">
 	<form:input path="username"/>
+	<form:errors path="username"></form:errors>
 	<form:password path="password"/>
+	<form:errors path="password"></form:errors>
 	<form:input path="name"/>
+	<form:errors path="name"></form:errors>
 	<form:input path="email"/>
+	<form:errors path="email"></form:errors>
 	<form:input path="phone"/>
+	<form:errors path="phone"></form:errors>
 	<form:button>join</form:button>
 </form:form>
 </body>
